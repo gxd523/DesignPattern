@@ -4,7 +4,7 @@ package com.gxd.demo.design.pattern.decorator;
  * Created by guoxiaodong on 2019/4/7 16:02
  */
 public abstract class Decorator implements Component {
-    private Component component;
+    private final Component component;
 
     public Decorator(Component component) {
         this.component = component;
