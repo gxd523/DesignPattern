@@ -2,7 +2,6 @@ package com.gxd.demo.design.pattern
 
 import com.gxd.demo.design.pattern.adapter.Adapter
 import com.gxd.demo.design.pattern.adapter.Target
-import com.gxd.demo.design.pattern.builder.Person
 import com.gxd.demo.design.pattern.chain.event.Event
 import com.gxd.demo.design.pattern.chain.event.impl.Activity
 import com.gxd.demo.design.pattern.chain.event.impl.View
@@ -15,21 +14,12 @@ import com.gxd.demo.design.pattern.chain.interceptor.impl.RetryAndFollowUpInterc
 import com.gxd.demo.design.pattern.decorator.ConcreteComponent
 import com.gxd.demo.design.pattern.decorator.ConcreteDecorator1
 import com.gxd.demo.design.pattern.decorator.ConcreteDecorator2
-import com.gxd.demo.design.pattern.factory.phone.OnePlusPhone
-import com.gxd.demo.design.pattern.factory.phone.Phone
-import com.gxd.demo.design.pattern.factory.phone.SamsungPhone
-import com.gxd.demo.design.pattern.factory.phonefactory.ConcretePhoneFactory
-import com.gxd.demo.design.pattern.factory.phonefactory.PhoneFactory
 import com.gxd.demo.design.pattern.observer.Observable
 import com.gxd.demo.design.pattern.observer.Observer
 import com.gxd.demo.design.pattern.observer.callback.Button
 import com.gxd.demo.design.pattern.proxy.Subject
 import com.gxd.demo.design.pattern.proxy.SubjectImpl
 import com.gxd.demo.design.pattern.proxy.SubjectProxy
-import com.gxd.demo.design.pattern.singleton.EnumSingleton
-import com.gxd.demo.design.pattern.singleton.HungrySingleton
-import com.gxd.demo.design.pattern.singleton.LazySingleton
-import com.gxd.demo.design.pattern.singleton.StaticSingleton
 import com.gxd.demo.design.pattern.state.CloseState
 import com.gxd.demo.design.pattern.state.Context
 import com.gxd.demo.design.pattern.template.AbstractTemplate
@@ -40,12 +30,9 @@ import java.lang.reflect.Proxy
 fun main() {
     callback()
     observerPattern()
-    builderPattern()
     decoratorPattern()
     proxyPattern()
     dynamicProxyPattern()
-    singletonPattern()
-    factoryPattern()
     templatePattern()
     responsibilityChainPattern()
     okHttpInterceptor()
@@ -89,20 +76,6 @@ fun responsibilityChainPattern() {
     viewGroup.setNextHandler(view)
     val event = Event()
     activity.dispatchEvent(event)
-}
-
-/**
- * 单例模式
- */
-fun singletonPattern() {
-    // 饿汉式单例
-    val hungrySingleton = HungrySingleton.getInstance()
-    // 懒汉式单例
-    val lazySingleton = LazySingleton.getInstance()
-    // 静态单例
-    val staticSingleton = StaticSingleton.getInstance()
-    // 枚举单例
-    val enumSingleton = EnumSingleton.INSTANCE
 }
 
 /**
@@ -151,32 +124,6 @@ fun decoratorPattern() {
     concreteDecorator1.operate()
     val concreteDecorator2 = ConcreteDecorator2(concreteComponent)
     concreteDecorator2.operate()
-}
-
-/**
- * 工厂模式
- */
-fun factoryPattern() {
-    var phone: Phone
-    val phoneFactory: PhoneFactory
-    phoneFactory = ConcretePhoneFactory()
-    phone = phoneFactory.createPhone(SamsungPhone::class.java)
-    phone.call()
-    phone.sendMessage()
-    phone = phoneFactory.createPhone(OnePlusPhone::class.java)
-    phone.call()
-    phone.sendMessage()
-}
-
-/**
- * 建造者模式
- */
-fun builderPattern() {
-    val person = Person.Builder()
-        .setName("Tom")
-        .setAge(22)
-        .build()
-    println(person.toString())
 }
 
 /**
