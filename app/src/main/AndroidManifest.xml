@@ -1,8 +1,7 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gxd.demo.design.pattern">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:icon="@android:mipmap/sym_def_app_icon"
         android:label="DesignPattern"
-        android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
+        android:theme="@android:style/Theme.Black.NoTitleBar" />
 </manifest>
