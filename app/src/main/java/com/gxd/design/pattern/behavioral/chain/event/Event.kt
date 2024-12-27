@@ -1,4 +1,3 @@
-package com.gxd.design.pattern.behavioral.chain.event;
+package com.gxd.design.pattern.behavioral.chain.event
 
-public class Event {
-}
+interface Event

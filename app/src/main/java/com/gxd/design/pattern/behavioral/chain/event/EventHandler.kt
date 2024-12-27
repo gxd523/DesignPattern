@@ -1,29 +1,30 @@
-package com.gxd.design.pattern.behavioral.chain.event;
+package com.gxd.design.pattern.behavioral.chain.event
 
 /**
  * 责任链模式
  * 类似递归，dispatchEvent()内调用dispatchEvent()
  * 只是dispatchEvent()所属的对象不是同一个
  */
-public abstract class EventHandler {
-    private EventHandler nextHandler;
+abstract class EventHandler {
+    private var mNextHandler: EventHandler? = null
 
-    public boolean dispatchEvent(Event event) {
+    fun dispatchEvent(event: Event?): Boolean {
         if (consumeEvent(event)) {
-            return true;
+            return true
         } else {
+            val nextHandler = mNextHandler
             if (nextHandler != null) {
-                return nextHandler.dispatchEvent(event);
+                return nextHandler.dispatchEvent(event)
             } else {
-                System.out.println("no body handle event!");
-                return false;
+                println("no body handle event!")
+                return false
             }
         }
     }
 
-    public void setNextHandler(EventHandler nextHandler) {
-        this.nextHandler = nextHandler;
+    fun setNextHandler(nextHandler: EventHandler?) {
+        this.mNextHandler = nextHandler
     }
 
-    protected abstract boolean consumeEvent(Event event);
+    protected abstract fun consumeEvent(event: Event?): Boolean
 }

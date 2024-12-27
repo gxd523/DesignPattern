@@ -1,5 +1,5 @@
-package com.gxd.design.pattern.behavioral.chain.interceptor;
+package com.gxd.design.pattern.behavioral.chain.interceptor
 
-public interface Interceptor {
-    Response intercept(Chain chain);
+interface Interceptor {
+    fun intercept(chain: Chain): Response
 }

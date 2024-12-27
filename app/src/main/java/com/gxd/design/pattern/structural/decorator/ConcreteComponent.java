@@ -1,7 +1,7 @@
 package com.gxd.design.pattern.structural.decorator;
 
 /**
- * 具体的组件
+ * 具体被装饰的组件
  */
 public class ConcreteComponent implements Component {
     @Override

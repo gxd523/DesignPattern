@@ -4,7 +4,6 @@ import com.gxd.design.pattern.behavioral.chain.event.Event
 import com.gxd.design.pattern.behavioral.chain.event.impl.Activity
 import com.gxd.design.pattern.behavioral.chain.event.impl.View
 import com.gxd.design.pattern.behavioral.chain.event.impl.ViewGroup
-import com.gxd.design.pattern.behavioral.chain.interceptor.Interceptor
 import com.gxd.design.pattern.behavioral.chain.interceptor.Request
 import com.gxd.design.pattern.behavioral.chain.interceptor.impl.CallServerInterceptor
 import com.gxd.design.pattern.behavioral.chain.interceptor.impl.ChainImpl
@@ -24,15 +23,13 @@ fun responsibilityChainPattern() {
     val view = View()
     activity.setNextHandler(viewGroup)
     viewGroup.setNextHandler(view)
-    val event = Event()
+    val event = object : Event {}
     activity.dispatchEvent(event)
 }
 
 fun okHttpInterceptor() {
-    val interceptorList: MutableList<Interceptor> = ArrayList()
-    interceptorList.add(RetryAndFollowUpInterceptor())
-    interceptorList.add(CallServerInterceptor())
+    val interceptorList = listOf(RetryAndFollowUpInterceptor(), CallServerInterceptor())
     val originalRequest: Request = object : Request {}
-    val chain = ChainImpl(interceptorList, 0, originalRequest)
+    val chain = ChainImpl(interceptorList, originalRequest)
     chain.process(originalRequest)
 }
